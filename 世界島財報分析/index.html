@@ -1234,15 +1234,6 @@ body {
   white-space: nowrap;
 }
 .fee-history-table td.num { text-align: center; font-variant-numeric: tabular-nums; }
-.fee-formula {
-  margin-top: 10px;
-  padding: 10px 12px;
-  background: #dbeafe;
-  border-radius: 8px;
-  font-size: 12px;
-  color: var(--accent);
-}
-.fee-formula b { color: var(--ink); }
 
 /* ─── 季管理費收款明細表 ─── */
 .qmt-details { margin-top: 14px; }
@@ -5832,8 +5823,11 @@ function drawLiquidChart(months, monthLiquid, avgExp, selMonth) {
   if (months.length <= 14) {
     liquidLabelMs = months;
   } else {
+    // 大約每半年標一個 (每 6 個月取樣) + 關鍵點 (選定月/最高/最低/最近)
+    const halfYear = [];
+    for (let i = 0; i < months.length; i += 6) halfYear.push(months[i]);
     // 去重 + 按 x 排序 + 過濾相鄰 < 36px 的標籤（保留較大值）
-    let candidates = [...new Set([selMonth, maxM, minM, lastM].filter(Boolean))];
+    let candidates = [...new Set([...halfYear, selMonth, maxM, minM, lastM].filter(Boolean))];
     candidates.sort((a, b) => x(a) - x(b));
     const filtered = [];
     for (const m of candidates) {
@@ -6038,6 +6032,7 @@ function drawSectionExpenseTrend(months, sectionLabel, svgId, subId) {
 
   // Value labels — 稀疏顯示 (避免疊字)
   // 規則: 6 個均勻分布 + 局部峰值 (前後 3 月內最大且 > avg × 3)
+  const lastMonth = months[months.length - 1];   // 最近一個月，永遠標註
   const labelMonths = (() => {
     if (months.length <= 12) return months;
     const set = new Set();
@@ -6050,10 +6045,12 @@ function drawSectionExpenseTrend(months, sectionLabel, svgId, subId) {
       const localMax = Math.max(...months.slice(lo, hi).map(mm => monthlySum[mm]));
       if (monthlySum[m] === localMax) set.add(m);
     });
+    set.add(lastMonth);   // 最近月份必標
     return [...set];
   })();
-  // 過濾：相鄰 (±2) bar 高過自己 1.3 倍時跳過，避免被擋
+  // 過濾：相鄰 (±2) bar 高過自己 1.3 倍時跳過，避免被擋 (最近月份豁免)
   const filteredLabels = [...labelMonths].filter(m => {
+    if (m === lastMonth) return true;             // 最近月份不被過濾
     const i = months.indexOf(m);
     const lo = Math.max(0, i - 2), hi = Math.min(months.length, i + 3);
     const neighborMax = Math.max(...months.slice(lo, hi)
@@ -7779,10 +7776,7 @@ function drawQuarterlyMgmtFee() {
   const quarters = QUARTERLY.quarters;
   const stats = QUARTERLY.stats;
 
-  document.getElementById("q-mgmt-fee-sub").textContent =
-    `共 ${quarters.length} 季 · 平均應收 NT$ ${fmtWan(stats.avg_invoiced_per_q)}/季 · ` +
-    `M3 平均收款率 ${(stats.avg_rate_m3 * 100).toFixed(1)}% · ` +
-    `M1 ${(stats.avg_rate_m1_only * 100).toFixed(0)}% / M2 ${(stats.avg_rate_m2_only * 100).toFixed(0)}% / M3 ${(stats.avg_rate_m3_only * 100).toFixed(0)}% (新收比例)`;
+  document.getElementById("q-mgmt-fee-sub").textContent = "";
 
   svg.attr("viewBox", `0 0 ${VBW} ${VBH}`);
 
@@ -8077,10 +8071,6 @@ function renderFeeStructure() {
             `).join("")}
         </tbody>
       </table>
-      <div class="fee-formula">
-        <b>📐 應收公式</b>: 季應收 = (住宅總坪數 × 住宅費率 + 店面總坪數 × 店面費率) × 3 月<br>
-        三時期應收以 user 提供官方金額為準 (因每戶坪數不同，需查戶冊精算)。
-      </div>
     </div>
   `;
 }
