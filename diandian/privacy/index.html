@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="referrer" content="no-referrer">
+  <title>Privacy Policy for DotDot Tasks (KidHabitTracker)</title>
+  <link rel="canonical" href="https://austinweng.github.io/diandian/privacy/">
+  <style>
+    * { box-sizing: border-box; }
+    html { background: #f5f6f8; color: #202c38; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+    main {
+      max-width: 48rem;
+      margin: 2rem auto;
+      padding: 2.75rem 3rem;
+      background: #fff;
+      border: 1px solid #e2e6eb;
+      border-radius: 0.75rem;
+    }
+    header { margin-bottom: 1.75rem; }
+    h1 {
+      margin: 0;
+      font-size: clamp(1.85rem, 4vw, 2.35rem);
+      line-height: 1.2;
+      letter-spacing: -0.025em;
+    }
+    .updated { margin: 1rem 0 0; color: #526171; font-size: 0.95rem; }
+    h2 { margin: 2.25rem 0 0.8rem; font-size: 1.3rem; line-height: 1.35; }
+    p { margin: 0 0 1.1rem; }
+    strong { font-weight: 700; }
+    a { color: #205d88; text-underline-offset: 0.15em; }
+    a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+    section:last-child p:last-child { margin-bottom: 0; }
+    @media (max-width: 600px) {
+      html { background: #fff; }
+      main { margin: 0; padding: 2rem 1.25rem; border: 0; border-radius: 0; }
+    }
+    @media print {
+      html { background: #fff; }
+      main { max-width: none; margin: 0; padding: 0; border: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Privacy Policy for DotDot Tasks (KidHabitTracker)</h1>
+      <p class="updated">Last updated: <time datetime="2026-09-28">September 28, 2026</time></p>
+    </header>
+    <p>DotDot Tasks helps parents and guardians manage children's profiles, tasks, stars, rewards, growth records and family memories. This policy describes how these features store and share information. Parents and guardians set up and manage their family's use of the app.</p>
+    <section>
+      <h2>Information used by the app</h2>
+      <p>The information you enter may include family and child names, birthdays, gender, height and weight, growth notes, tasks, rewards and activity records. Optional features also use photos, diary recordings and text, and travel details. Travel information may include places, dates, notes and coordinates, including location and capture-time metadata from photos you select.</p>
+      <p>The app uses family codes, record identifiers and an app-specific iCloud user identifier supplied by Apple to connect family records and synchronize changes. It also uses a persistent device identifier for synchronization bookkeeping. Device nicknames are names a parent or member chooses in the app; these labels are not automatically filled with the device's system name or Apple ID name.</p>
+      <p>These identifiers and the associated family data are linked to accounts, devices and family records. They are not anonymized before synchronization merely because an identifier is an Apple-assigned code rather than a person's real name.</p>
+    </section>
+    <section>
+      <h2>On-device storage and your iCloud account</h2>
+      <p>The app stores information on your device. With iCloud synchronization enabled and available, the primary data store can also synchronize through your Apple account's private iCloud database. Diaries, including their recordings, text and photos, are part of this private-store path; they are not included in the public family snapshot described below.</p>
+      <p>Optional diary transcription uses on-device speech recognition when supported and authorized. If on-device recognition is unavailable, the app does not fall back to server-based speech recognition. This does not mean a saved diary recording can never leave the device: saved diary data can synchronize through the private iCloud store.</p>
+    </section>
+    <section>
+      <h2>Family Sync and public-database access</h2>
+      <p>Family Sync uses Apple's iCloud CloudKit public database. When family synchronization is enabled, a family snapshot is stored under your family code so other devices can join the family. The snapshot includes family and child profile information, growth records, tasks, stars, rewards and related synchronization information. The parent PIN and its hash/salt are not included in this snapshot. Diary contents and photo-proof image files are not included through this public-snapshot channel.</p>
+      <p><strong>The family snapshot is readable by anyone who knows the family code, including someone who is not signed in to iCloud. A family code is not an access restriction limited to approved family members.</strong> Share it only with people you trust, and consider this access risk before entering names, growth information or other personal details.</p>
+      <p>For cross-Apple-ID two-way synchronization, a joining member's pending changes are stored in a separate member record in the public database. The record includes the family code, the member's app-specific iCloud user identifier, their chosen nickname, synchronization status and pending family changes. The member identifier also forms part of the record name. These pending changes are stored in a readable family-data format, without app-level encryption of the payload. Anyone signed in to iCloud who knows the family code can read them; this is not restricted to members approved to submit changes.</p>
+      <p>The family record also contains a member list with member identifiers, chosen nicknames and status, and deletion summaries that can include an item's type, title, time, member identifier and chosen device label. These are subject to the family record's public read access. Successful merge processing clears the pending snapshot payload from an idle member record but may retain synchronization status and other metadata. This is not a guarantee of immediate deletion of every related record or copy.</p>
+    </section>
+    <section>
+      <h2>Travel Memories sharing</h2>
+      <p>Travel Memories uses a separate CloudKit sharing path. When a parent starts sharing, the app stores shared trips, places and photos in a CloudKit shared zone in that parent's iCloud account. The family snapshot contains the sharing link and the owner's app-specific iCloud identifier. Trips are linked to the family, places to trips, and photos to places; photos and associated dates or coordinates can be part of the shared records.</p>
+      <p><strong>The share is configured for read-and-write access by people who obtain the sharing link and sign in to iCloud.</strong> Because the link is included in the family snapshot, someone who knows the family code can obtain it. Do not assume that possession of the link or code is limited to people you intended to invite.</p>
+    </section>
+    <section>
+      <h2>Purposes, advertising and tracking</h2>
+      <p>The app uses these data flows to provide app functionality: managing family activities and records, synchronizing changes and sharing selected family memories. The app does not display advertising or use these data for advertising tracking across other companies' apps or websites. It does not integrate an advertising or analytics SDK for these purposes.</p>
+      <p>The synchronization paths described above use Apple's iCloud and CloudKit services. Public-database and sharing-link access should not be confused with a promise that only your own devices can access the data.</p>
+    </section>
+    <section>
+      <h2>Children's information</h2>
+      <p>The app includes child-facing features and processes information about children that parents or guardians set up and manage. A parent or guardian manages the family profiles, parental controls and sharing choices. Please review what is entered and shared, particularly names, birthdays, growth information, photos and recordings, and avoid entering unnecessary personal information.</p>
+      <p>The parent PIN protects parental actions in the app; it does not make the public CloudKit family record private or replace the sharing-link access rules above.</p>
+    </section>
+    <section>
+      <h2>Managing information and deletion</h2>
+      <p>Parents can manage records and use the app's synchronization, family membership and deletion controls. Clearing a device, leaving a family, removing a member and deleting shared records are different operations. Do not assume that disabling synchronization, uninstalling the app or removing a member erases all cloud data or revokes access to a known family code or sharing link.</p>
+      <p>Cloud changes and cleanup depend on the operation, iCloud sign-in, connectivity and subsequent synchronization. Some status records, deletion summaries or recovery data may remain as part of synchronization and recovery. This policy does not promise a single retention period or immediate deletion across all devices, cloud records, exports or copies held by others.</p>
+    </section>
+    <section>
+      <h2>Questions and privacy requests</h2>
+      <p>For privacy questions or requests, email <a href="mailto:mchiao.weng@gmail.com">mchiao.weng@gmail.com</a>. Describe the request without sending a parent PIN, Apple account password or unnecessary information about a child.</p>
+    </section>
+  </main>
+</body>
+</html>
